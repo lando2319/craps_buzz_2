@@ -54,7 +54,7 @@
                   <div class="game_status_headline">
                     <label>{{ game_status }} {{point_is_word}}</label>
                   </div>
-                  <div class="text-animated-two" dice-roll-actual="hide_dice">
+                  <div>
                     <ul>
                       <li ng-repeat="player_game_call in player_game_calls" class="losing_bet-{{player_game_call.losing_bet}} winning_bet-{{player_game_call.winning_bet}}">
                       <span class="player_rescue-{{player_game_call.player_rescue}}">{{player_game_call.call_actual}} </span><a class="btn btn-default game_helper_button" data-toggle="modal" data-target={{player_game_call.game_helper_modal_id}}>?</a>
