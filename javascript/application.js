@@ -196,22 +196,20 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
       }
   })
 
-  $scope.animateClass = function() {
-        if ($scope.toggleAnimation) {
-            return 'text-animated-one';          
-        } else {
-            return 'text-animated-two';
-        }
-  }
-  $scope.toggleAnimation = false
-  
+  $scope.showDice = 1
+
   $scope.roll = function() {
       $scope.player_game_calls = []
-      $scope.toggleAnimation = true
-      var ms = 1500;
-      setTimeout(function() {
-        $scope.toggleAnimation = false;
-      }, ms);
+      $scope.showDice = 0
+      var self = $scope;
+          setTimeout(function() {
+            $('.dice_size').css('opacity', 0);
+            self.showDice = 1;
+            self.$apply();
+            $('.dice_size').css('opacity', 1);
+      }, 250);
+    
+
       var current_roll_dice_2= new Array(1,2,3,4,5,6);
       var random_2 = current_roll_dice_2[Math.floor(Math.random() * current_roll_dice_2.length)];
       // random_2 = 2;
