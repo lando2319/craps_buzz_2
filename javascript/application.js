@@ -330,7 +330,7 @@ function PlayerGameCalls($scope, win_or_lose, game_helper_modal_id, game_helper_
         $scope.player_game_calls_alt = []
         $scope.player_game_calls_alt = $scope.player_game_calls
         $scope.player_game_calls = []
-        angular.forEach($scope.player_game_calls_alt.reverse(), function(value) {
+        angular.forEach($scope.player_game_calls_alt, function(value) {
            if (value.done_here != true) {
                 $scope.player_game_calls.push(value)
            }
