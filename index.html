@@ -54,7 +54,7 @@
                   <div class="game_status_headline">
                     <label>{{ game_status }} {{point_is_word}}</label>
                   </div>
-                  <div class="notice_board text-animated-two" dice-roll-actual="hide_dice">
+                  <div class="text-animated-two" dice-roll-actual="hide_dice">
                     <ul>
                       <li ng-repeat="player_game_call in player_game_calls" class="losing_bet-{{player_game_call.losing_bet}} winning_bet-{{player_game_call.winning_bet}}">
                       <span class="player_rescue-{{player_game_call.player_rescue}}">{{player_game_call.call_actual}} </span><a class="btn btn-default game_helper_button" data-toggle="modal" data-target={{player_game_call.game_helper_modal_id}}>?</a>
@@ -117,7 +117,21 @@
                         Coins: {{bank_roll_actual}}
                       </div>
                       </p>
-                      <div class="dice_size" ng-show="showDice">
+                      <div class="dice_size" ng-show="!hide_dice" dice-roll-actual="hide_dice">
+                        <span ng-show="die_one == 1">&#x2680</span>
+                        <span ng-show="die_one == 2">&#x2681</span>
+                        <span ng-show="die_one == 3">&#x2682</span>
+                        <span ng-show="die_one == 4">&#x2683</span>
+                        <span ng-show="die_one == 5">&#x2684</span>
+                        <span ng-show="die_one == 6">&#x2685</span>
+                        <span ng-show="die_two == 1">&#x2680</span>
+                        <span ng-show="die_two == 2">&#x2681</span>
+                        <span ng-show="die_two == 3">&#x2682</span>
+                        <span ng-show="die_two == 4">&#x2683</span>
+                        <span ng-show="die_two == 5">&#x2684</span>
+                        <span ng-show="die_two == 6">&#x2685</span>
+                      </div>
+                      <div class="dice_size" ng-show="hide_dice" dice-roll-actual="hide_dice">
                         <span ng-show="die_one == 1">&#x2680</span>
                         <span ng-show="die_one == 2">&#x2681</span>
                         <span ng-show="die_one == 3">&#x2682</span>

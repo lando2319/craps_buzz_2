@@ -96,11 +96,6 @@ fieldset[disabled] .btn-darkest.active {
   text-align: center;
   font-size: 80px;
   line-height: 50px;
-  -webkit-transition:all linear 0.5s;
-  -moz-transition:all linear 0.5s;
-  -o-transition:all linear 0.5s;
-  transition:all linear 0.5s;
-  display:block!important;
 }
 
 .dice_fade {

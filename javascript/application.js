@@ -196,19 +196,9 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
       }
   })
 
-  $scope.showDice = 1
-
   $scope.roll = function() {
       $scope.player_game_calls = []
-      $scope.showDice = 0
-      var self = $scope;
-          setTimeout(function() {
-            $('.dice_size').css('opacity', 0);
-            self.showDice = 1;
-            self.$apply();
-            $('.dice_size').css('opacity', 1);
-      }, 250);
-    
+      $scope.hide_dice = !$scope.hide_dice
 
       var current_roll_dice_2= new Array(1,2,3,4,5,6);
       var random_2 = current_roll_dice_2[Math.floor(Math.random() * current_roll_dice_2.length)];
@@ -302,6 +292,20 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
   }
 }]);
 
+// creates the dice fade effect
+crapsGame.directive("diceRollActual", function($animate) {
+    return function(scope, element, attrs) {
+        scope.$watch(attrs.diceRollActual, function(newVal) {
+            if (newVal) {
+                $animate.addClass(element, "text-animated-two");
+                $animate.removeClass(element, "text-animated-one");
+            } else {
+                $animate.removeClass(element, "text-animated-two");
+                $animate.addClass(element, "text-animated-one");
+            }
+        })
+    }
+});
 
 // win/lose announcement
 function PlayerGameCalls($scope, win_or_lose, game_helper_modal_id, game_helper_modal_message, game_helper_modal_headline, game_helper_modal_win_lose, starting_bet, ending_bet) {
