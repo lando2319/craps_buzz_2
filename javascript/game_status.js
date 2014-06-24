@@ -1,4 +1,3 @@
-//= require odds
 // Game Status Functions
 
 function FrontLineWinner($scope, total_of_dice)
