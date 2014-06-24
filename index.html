@@ -1,3 +1,348 @@
-this is another test
 
-iiiiiiii
+<html ng-app="crapsGame">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-animate.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/application.css">
+
+  </head>
+  <body>
+    <form action="">
+      <fieldset ng-controller="crapsGameplay">
+        <div class="container">
+          <div>
+            <div class="well">
+              <div class="col-xs-6 col-ms-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_4 == 0" ng-click="dont_come_bet_lay_on_4_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_4 != 0">{{ dont_come_bet_flat_on_4 }} \ {{ dont_come_bet_lay_on_4 }}</span></span></a>
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_5 == 0" ng-click="dont_come_bet_lay_on_5_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_5 != 0">{{ dont_come_bet_flat_on_5 }} \ {{ dont_come_bet_lay_on_5 }}</span></a>
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_6 == 0" ng-click="dont_come_bet_lay_on_6_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_6 != 0">{{ dont_come_bet_flat_on_6 }} \ {{ dont_come_bet_lay_on_6 }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified point_num_height">
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_4 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_4_button()"><span ng-hide="come_bet_flat_on_4 != 0" class="point_num_font point_num_size">{{ four }}</span><span class="badge" ng-show="come_bet_flat_on_4 != 0">{{ come_bet_flat_on_4 }} \ {{ come_bet_odds_on_4  }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_5 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_5_button()"><span ng-hide="come_bet_flat_on_5 != 0" class="point_num_font point_num_size">{{ five }}</span><span class="badge" ng-show="come_bet_flat_on_5 != 0">{{ come_bet_flat_on_5 }} \ {{ come_bet_odds_on_5  }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_6 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_6_button()"><span ng-hide="come_bet_flat_on_6 != 0" class="point_num_font point_num_size">{{ six }}</span><span class="badge" ng-show="come_bet_flat_on_6 != 0">{{ come_bet_flat_on_6 }} \ {{ come_bet_odds_on_6  }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 4 || come_bet_flat_on_4 > 0" type="button" ng-model="dice" ng-click="place_bet_on_4_button();"><span class="badge">{{ place_bet_on_the_4 }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 5 || come_bet_flat_on_5 > 0" type="button" ng-model="dice" ng-click="place_bet_on_5_button();"><span class="badge">{{ place_bet_on_the_5 }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 6 || come_bet_flat_on_6 > 0" type="button" ng-model="dice" ng-click="place_bet_on_6_button();"><span class="badge">{{ place_bet_on_the_6 }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="field_bet_button();"><span class="point_num_font">Field </span><span class="badge">{{ field_bet }}</span></a>
+                  </div>
+                </div>
+                <div class="row dealer_calls">
+                  <div class="game_status_headline">
+                    <label>{{ game_status }} {{point_is_word}}</label>
+                  </div>
+                  <div class="notice_board text-animated-two" dice-roll-actual="hide_dice">
+                    <ul>
+                      <li ng-repeat="player_game_call in player_game_calls" class="losing_bet-{{player_game_call.losing_bet}} winning_bet-{{player_game_call.winning_bet}}">
+                      <span class="player_rescue-{{player_game_call.player_rescue}}">{{player_game_call.call_actual}} </span><a class="btn btn-default game_helper_button" data-toggle="modal" data-target={{player_game_call.game_helper_modal_id}}>?</a>
+                      <div class="modal fade" id={{player_game_call.game_helper_modal_id.slice(1)}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title" id="myModalLabel">Craps Buzz Says ...</h4>
+                            </div>
+                            <div class="modal-body">
+                              <h4>{{player_game_call.game_helper_modal_headline}}</h4>
+                              {{player_game_call.game_helper_modal_message}}
+                              <h5>{{player_game_call.game_helper_modal_win_lose}}</h5>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </li>
+                    </ul>
+                  </div>
+                  {{no_bet_not_enough_funds}}
+                </div>
+              </div>
+              <div class="col-xs-6 col-ms-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_8 == 0" ng-click="dont_come_bet_lay_on_8_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_8 != 0">{{ dont_come_bet_flat_on_8 }} \ {{ dont_come_bet_lay_on_8 }}</span></a>
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_9 == 0" ng-click="dont_come_bet_lay_on_9_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_9 != 0">{{ dont_come_bet_flat_on_9 }} \ {{ dont_come_bet_lay_on_9 }}</span></a>
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-disabled="dont_come_bet_flat_on_10 == 0" ng-click="dont_come_bet_lay_on_10_button();" ng-model="dice"><span class="badge" ng-show="dont_come_bet_flat_on_10 != 0">{{ dont_come_bet_flat_on_10 }} \ {{ dont_come_bet_lay_on_10 }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified point_num_height">
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_8 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_8_button()"><span ng-hide="come_bet_flat_on_8 != 0" class="point_num_font point_num_size">{{ eight }}</span><span class="badge" ng-show="come_bet_flat_on_8 != 0">{{ come_bet_flat_on_8 }} \ {{ come_bet_odds_on_8  }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_9 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_9_button()"><span ng-hide="come_bet_flat_on_9 != 0" class="point_num_font point_num_size">{{ nine }}</span><span class="badge" ng-show="come_bet_flat_on_9 != 0">{{ come_bet_flat_on_9 }} \ {{ come_bet_odds_on_9  }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="come_bet_flat_on_10 == 0 || odds_on_come_bets_are_off == true" ng-model="dice" ng-click="come_bet_odds_on_10_button()"><span ng-hide="come_bet_flat_on_10 != 0" class="point_num_font point_num_size">{{ ten }}</span><span class="badge" ng-show="come_bet_flat_on_10 != 0">{{ come_bet_flat_on_10 }} \ {{ come_bet_odds_on_10 }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 8 || come_bet_flat_on_8 > 0" type="button" ng-model="dice" ng-click="place_bet_on_8_button();"><span class="badge">{{ place_bet_on_the_8 }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 9 || come_bet_flat_on_9 > 0" type="button" ng-model="dice" ng-click="place_bet_on_9_button();"><span class="badge">{{ place_bet_on_the_9 }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="place_bets_are_off == true || point_is == 10 || come_bet_flat_on_10 > 0" type="button" ng-model="dice" ng-click="place_bet_on_10_button();"><span class="badge">{{ place_bet_on_the_10 }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="game_status == 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="place_dont_come_bet_button();"><span class="point_num_font_darkside">D C </span><span class="badge">{{ place_dont_come_bet }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="game_status == 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="place_come_bet_button();"><span class="point_num_font">Come </span><span class="badge">{{ place_come_bet }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="(line_bet + dont_pass_line_bet) < 1 " ng-model="dice" value="roll the dice" ng-click="roll();">
+                      <div class="dealer_calls coin_style">
+                        Coins: {{bank_roll_actual}}
+                      </div>
+                      </p>
+                      <div class="dice_size text-animated-two" dice-roll-actual="hide_dice">
+                        <span ng-show="die_one == 1">&#x2680</span>
+                        <span ng-show="die_one == 2">&#x2681</span>
+                        <span ng-show="die_one == 3">&#x2682</span>
+                        <span ng-show="die_one == 4">&#x2683</span>
+                        <span ng-show="die_one == 5">&#x2684</span>
+                        <span ng-show="die_one == 6">&#x2685</span>
+                        <span ng-show="die_two == 1">&#x2680</span>
+                        <span ng-show="die_two == 2">&#x2681</span>
+                        <span ng-show="die_two == 3">&#x2682</span>
+                        <span ng-show="die_two == 4">&#x2683</span>
+                        <span ng-show="die_two == 5">&#x2684</span>
+                        <span ng-show="die_two == 6">&#x2685</span>
+                      </div>
+                      </p>
+                      <div class="dealer_calls">
+                        <div ng-show="(line_bet + dont_pass_line_bet) > 1">
+                          DICE<br>ARE READY!
+                        </div>
+                        <div ng-show="(line_bet + dont_pass_line_bet) == 0">
+                          NEED "PASS LINE"<br>OR "DON'T PASS" BET!
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-ms-4 col-sm-4 col-md-4 col-lg-4">
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" ng-click="dont_pass_line_bet_button();"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">{{ dont_pass_line_bet }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="line_bet_button();"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">{{ line_bet }}</span></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="dont_pass_line_bet == 0 || game_status == 'Come Out Roll'" type="button" ng-model="dice" ng-click="odds_behind_the_dont_pass_line_button();"><span class="point_num_font_darkside">Lay </span><span class="badge">{{ odds_behind_the_dont_pass_line }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="line_bet == 0 || game_status == 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="odds_behind_the_line_button();"><span class="point_num_font">Odds </span><span class="badge">{{ odds_behind_the_line }}</span></a>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                </div>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-model="dice" ng-click="increase_decrease_button();">{{ increase_decrease }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" ng-click="bet_denomination_button();">{{ increase_decrease }}{{ bet_denomination }}</span></a>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-toggle="modal" data-target="#propBets">
+                      Prop Bets 
+                    </a>
+                    <a class="btn btn-default" data-toggle="modal" data-target="#crapsHelp">
+                      Help
+                    </a>
+                  </div>
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" data-toggle="modal" data-target="#advOptions">
+                      Adv
+                    </a>
+                    <a class="btn btn-default" data-toggle="modal" data-target="#webDev">
+                      App Dev
+                    </a>
+                  </div>
+                </div>
+                  <div class="modal fade" id="propBets" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Prop Bets</h4>
+                        </div>
+                        <div class="modal-body point_num_font">
+                          <h4>Hard Ways<h4>
+                          <div class="row">
+                            <div class="btn-group-vertical">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="hardways_are_off" ng-model="dice" value="Place Bet" ng-click="prop_bet_hard_6_button();">Hard 6 <span class="badge">{{ prop_bet_hard_6 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="hardways_are_off" ng-model="dice" value="Place Bet" ng-click="prop_bet_hard_8_button();">Hard 8 <span class="badge">{{ prop_bet_hard_8 }}</span></button>
+                            </div>
+                            <div class="btn-group-vertical">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="hardways_are_off" ng-model="dice" value="Place Bet" ng-click="prop_bet_hard_10_button();">Hard 10 <span class="badge">{{ prop_bet_hard_10 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-disabled="hardways_are_off" ng-model="dice" value="Place Bet" ng-click="prop_bet_hard_4_button();">Hard 4 <span class="badge">{{ prop_bet_hard_4 }}</span></button>
+                            </div>
+                          </div>
+                          <br>
+                          <button class="btn btn-default" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_red_button();">Any Seven <span class="badge">{{ prop_bet_red }}</span></button>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_2_1_button();">Ace Deuce <span class="badge">{{ prop_bet_on_2_1 }}</span></button>
+                              <button class="btn btn-default" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_1_1_button();">Aces <span class="badge">{{ prop_bet_on_1_1 }}</span></button>
+                              <button class="btn btn-default" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_6_button();">Twelve <span class="badge">{{ prop_bet_on_6_6 }}</span></button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_craps_button();">Craps <span class="badge">{{ prop_bet_craps }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_5_button();">Eleven <span class="badge">{{ prop_bet_on_6_5 }}</span></button>
+                            </div>
+                          </div>
+                          <br>
+                          <h4>Hop Bets<h4>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_1_button();">6-1 <span class="badge">{{ prop_bet_on_6_1 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_5_2_button();">5-2 <span class="badge">{{ prop_bet_on_5_2 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_4_3_button();">4-3 <span class="badge">{{ prop_bet_on_4_3 }}</span></button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_3_1_button();">3-1 <br><span class="badge">{{ prop_bet_on_3_1 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_4_1_button();">4-1 <br><span class="badge">{{ prop_bet_on_4_1 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_5_1_button();">5-1 <br><span class="badge">{{ prop_bet_on_5_1 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_2_button();">6-2 <br><span class="badge">{{ prop_bet_on_6_2 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_3_button();">6-3 <br><span class="badge">{{ prop_bet_on_6_3 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_6_4_button();">6-4 <br><span class="badge">{{ prop_bet_on_6_4 }}</span></button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_2_2_button();">2-2 <br><span class="badge">{{ prop_bet_on_2_2 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_3_2_button();">3-2 <br><span class="badge">{{ prop_bet_on_3_2 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_4_2_button();">4-2 <br><span class="badge">{{ prop_bet_on_4_2 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_5_3_button();">5-3 <br><span class="badge">{{ prop_bet_on_5_3 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_5_4_button();">5-4 <br><span class="badge">{{ prop_bet_on_5_4 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_5_5_button();">5-5 <br><span class="badge">{{ prop_bet_on_5_5 }}</span></button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="btn-toolbar btn-group">
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_3_3_button();">3-3 <br><span class="badge">{{ prop_bet_on_3_3 }}</span></button>
+                              <button class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet" ng-click="prop_bet_on_4_4_button();">4-4 <br><span class="badge">{{ prop_bet_on_4_4 }}</span></button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="crapsHelp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Craps Help</h4>
+                        </div>
+                        <div class="modal-body">
+                          Seven you win, Seven You Lose
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="advOptions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Advanced Options</h4>
+                        </div>
+                        <div class="modal-body">
+                          <h3>Advanced Options</h3>
+                          <input type="checkbox" ng-model="place_bets_are_off" /><label>Place Bets Off </label></p>
+                          <span>{{ place_bets_off_message }}</span></p>
+                          <input type="checkbox" ng-model="odds_on_come_bets_are_off" /><label>Odds On Come Bets Off</label></p>
+                          <span>{{ odds_on_come_bets_message }}</span></p>
+                          <input type="checkbox" ng-model="hardways_are_off" /><label>Hardway Bets Off</label></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="webDev" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">Mike Land - Software Developer</h4><i>Interested in Technology, Economics, and living in the future...</i>
+                        </div>
+                        <div class="modal-body app_pitch">
+                            <h2>Welcome to Craps Buzz</h2>
+                            A Craps Game built using AngularJS 
+                            <br>
+                            <a href="https://github.com/lando2319/software_dev_freelancer_site">Check Out The Code On Github.</a>
+                            <br>
+                            Are you looking for a Software Developer? 
+                            <br>
+                            <a href="http://www.mikepland.com/contact">Contact Me For A Consultation</a>
+                            <br>
+                            <i>Sometimes I Tweet...</i>
+                            <br>
+                            <br>
+<a class="twitter-timeline" href="https://twitter.com/mikepland" data-widget-id="481249225997447169" data-tweet-limit="3">Tweets by @mikepland</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row disclaimer_for_game">
+                    Entertainment Purposes Only
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
+<script src="/javascript/application.js"></script>
+<script src="/javascript/odds.js"></script>
+<script src="/javascript/opening_bet_values.js"></script>
+<script src="/javascript/game_status.js"></script>
