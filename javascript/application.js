@@ -198,7 +198,6 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
 
   $scope.roll = function() {
       $scope.player_game_calls = []
-      $scope.hide_dice = !$scope.hide_dice
 
       var current_roll_dice_2= new Array(1,2,3,4,5,6);
       var random_2 = current_roll_dice_2[Math.floor(Math.random() * current_roll_dice_2.length)];
@@ -263,6 +262,8 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
               PayTheLastCome($scope, total_of_dice)
           }
       }
+      $scope.hide_dice = !$scope.hide_dice
+      $scope.no_bet_not_enough_funds = ""
   };
 
   // connecting each place to bet with bank_roll_actual
@@ -326,7 +327,6 @@ function PlayerGameCalls($scope, win_or_lose, game_helper_modal_id, game_helper_
                 value.done_here = true
             }
         })
-        $scope.player_game_calls.push({call_actual: game_helper_modal_message, game_helper_modal_id: game_helper_modal_id, game_helper_modal_message: game_helper_modal_message, game_helper_modal_headline: game_helper_modal_headline, game_helper_modal_win_lose: game_helper_modal_win_lose})
         $scope.player_game_calls_alt = []
         $scope.player_game_calls_alt = $scope.player_game_calls
         $scope.player_game_calls = []
@@ -335,6 +335,7 @@ function PlayerGameCalls($scope, win_or_lose, game_helper_modal_id, game_helper_
                 $scope.player_game_calls.push(value)
            }
         })
+        $scope.player_game_calls.push({call_actual: game_helper_modal_message, game_helper_modal_id: game_helper_modal_id, game_helper_modal_message: game_helper_modal_message, game_helper_modal_headline: game_helper_modal_headline, game_helper_modal_win_lose: game_helper_modal_win_lose})
     }
     else if (win_or_lose == "PLAYER_RESCUE") {
         var player_rescue_var = game_helper_modal_message
