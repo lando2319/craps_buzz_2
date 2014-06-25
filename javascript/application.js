@@ -327,14 +327,6 @@ function PlayerGameCalls($scope, win_or_lose, game_helper_modal_id, game_helper_
                 value.done_here = true
             }
         })
-        $scope.player_game_calls_alt = []
-        $scope.player_game_calls_alt = $scope.player_game_calls
-        $scope.player_game_calls = []
-        angular.forEach($scope.player_game_calls_alt, function(value) {
-           if (value.done_here != true) {
-                $scope.player_game_calls.push(value)
-           }
-        })
         $scope.player_game_calls.push({call_actual: game_helper_modal_message, game_helper_modal_id: game_helper_modal_id, game_helper_modal_message: game_helper_modal_message, game_helper_modal_headline: game_helper_modal_headline, game_helper_modal_win_lose: game_helper_modal_win_lose})
     }
     else if (win_or_lose == "PLAYER_RESCUE") {
