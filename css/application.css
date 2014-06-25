@@ -184,6 +184,14 @@ fieldset[disabled] .btn-darkest.active {
   font-size: 22px;
 }
 
+.display_buttons {
+  max-width: 120px;
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 ul
 {
     list-style: none;
@@ -221,6 +229,17 @@ ul
     position:relative;
     -webkit-animation:fade-in 2s 1;
     -webkit-animation-delay:0s;
+}
+
+.demo_button {
+    min-width: 100px;
+    max-height: 20px;
+    line-height: 10px;
+}
+
+.demo_no_border {
+    border: none;
+    background: none;
 }
 
 .big_button {

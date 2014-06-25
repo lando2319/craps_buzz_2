@@ -284,8 +284,88 @@
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           <h4 class="modal-title" id="myModalLabel">Craps Help</h4>
                         </div>
-                        <div class="modal-body craps_help">
-                          Seven You Win and then... Seven You lose. there is more to it than that though. Lots more and you can see here.
+                        <div class="modal-body">
+                          <div class="row center_this">
+                            <div class="app_pitch">
+                              Quick Start Guide to Craps Buzz
+                              <br>
+                            </div>
+                            <div class="btn-group btn-group-justified display_buttons">
+                              <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" ng-click="dont_pass_line_bet_button();"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">{{ dont_pass_line_bet }}</span></a>
+                              <a class="btn btn-default ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="line_bet_button();"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">{{ line_bet }}</span></a>
+                            <br>
+                            </div>
+                            <div class="center_this dealer_calls">
+                              <h4 class="media-heading">Pick A Side</h4>
+                              In order to throw the Dice<br>You must Place a Bet on the "Pass Line" or "Don't Pass"
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row center_this">
+                            <div class="well dealer_calls">
+                              <div class="game_status_headline">
+                                <label>{{ game_status }} {{point_is_word}}</label>
+                              </div>
+                              <div>
+                                {{player_game_call_demo}} <a class="btn btn-default game_helper_button">?</a>
+                              </div>
+                              <span class="winning_bet-true">{{player_game_call_demo_win}} <a class="btn btn-default game_helper_button">?</a></span>
+                            </div>
+                            <div class="center_this dealer_calls">
+                              <h4 class="media-heading">Check out the Notice Board</h4>
+                              The Notice Board will Provide Info on<br>each bet placed, and Win / Lose explaination.<br>
+                              Click on the <a class="btn btn-default game_helper_button">?</a> for more details on a notice.
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row center_this">
+                            <div class="dealer_calls">
+                              <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice" value="Place Bet"><span class="point_num_font">Field </span><span class="badge">0</span></a>
+                            </div>
+                            <br>
+                            <div class="center_this dealer_calls">
+                              <h4 class="media-heading">Make Some Bets</h4>
+                              Look For this<a class="btn btn-default ng-pristine ng-valid demo_no_border"><span class="point_num_font"></span><span class="badge">0</span></a>These are available Bets<br>Note: During the "Come Out Roll" Some bets are disabled
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row center_this dealer_calls">
+                            <div>
+                              <a class="btn btn-darkest ng-pristine ng-valid demo_button" type="button" ng-model="dice">+</span></a>
+                            </div>
+                            <br>
+                            <div class="center_this dealer_calls">
+                              <h4 class="media-heading">Don't Like A Bet?</h4>
+                              Click on the - / + to change between adding and removing<br>Coins from a bet.<br>Note: Some Bets will appear disabled until there is a Win/Lose decision.
+                            </div>
+                          </div>
+                          <hr>
+                          <div class="row center_this dealer_calls">
+                            <div>
+                              <a class="btn btn-default ng-pristine ng-valid" ng-model="dice" value="roll the dice">
+                                <div class="dealer_calls coin_style">
+                                  Coins: 100
+                                </div>
+                                </p>
+                                <div class="dice_size" ng-show="!hide_dice" dice-roll-actual="hide_dice">
+                                  <span ng-show="die_one == 2">&#x2681</span>
+                                  <span ng-show="die_two == 2">&#x2681</span>
+                                </div>
+                                </p>
+                                <div class="dealer_calls">
+                                  <div>
+                                    DICE<br>ARE READY!
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                            <br>
+                            <div class="center_this dealer_calls">
+                              <h4 class="media-heading">ROLL THE DICE!</h4>
+                              The Notice Board will show Win Lose Announcements<br><br>Good Luck<br><br>
+                              <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
+                            </div>
+                          </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

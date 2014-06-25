@@ -2,6 +2,12 @@
 function OpeningBetValues($scope)
 {
   $scope.player_game_calls = []
+
+  $scope.player_game_call_demo = "You Placed a Pass Line Bet for 5 Coins"
+  $scope.player_game_call_demo_win = "You WON 5 Coins for your 5 Coins on Field Bet"
+
+
+
   $scope.dealer_call = "Come Out Roll"
   $scope.die_one = 2
   $scope.die_two = 2
