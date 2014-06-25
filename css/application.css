@@ -182,7 +182,6 @@ fieldset[disabled] .btn-darkest.active {
   text-align: center;
   font-weight: bold;
   font-size: 22px;
-  color: black;
 }
 
 ul
@@ -236,6 +235,31 @@ ul
   font-style: italic;
   color: black;
 }
+
+.bring_up_the_lid {
+  display: none !important;
+}
+
+.craps_help {
+  font-family: 'Vidaloka', serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  -moz-column-count: 2;
+  -moz-column-gap: 4px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 4px;
+  column-count: 2;
+  column-gap: 4px;
+}
+
+.center_this {
+  display: block;
+  margin-left: 50px;
+  margin-right: auto;
+}
+
 
 //.btn-default {
 //  min-width: 56px;
