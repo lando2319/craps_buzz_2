@@ -224,7 +224,18 @@ ul
     -webkit-animation-delay:0s;
 }
 
+.big_button {
+    min-width: 200px;
+}
 
+.need_an_app {
+  font-family: 'Vidaloka', serif;
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  font-style: italic;
+  color: black;
+}
 
 //.btn-default {
 //  min-width: 56px;
