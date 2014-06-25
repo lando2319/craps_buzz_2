@@ -14,7 +14,7 @@ crapsGame.service('diceService', function() {
  
 });
 
-crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope, diceService) {
+crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', function($scope, $timeout, diceService) {
   OpeningBetValues($scope)
 
   $scope.increase_decrease_button = function() { $scope.increase_decrease == "+" ? $scope.increase_decrease = "-" : $scope.increase_decrease = "+" }
@@ -198,7 +198,7 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
 
   $scope.roll = function() {
       $scope.player_game_calls = []
-
+      $scope.hide_dice = !$scope.hide_dice
       var current_roll_dice_2= new Array(1,2,3,4,5,6);
       var random_2 = current_roll_dice_2[Math.floor(Math.random() * current_roll_dice_2.length)];
       // random_2 = 2;
@@ -209,61 +209,63 @@ crapsGame.controller('crapsGameplay', ['$scope', 'diceService', function($scope,
       $scope.die_two = random_1;
       var total_of_dice = random_1 + random_2;
 
-      EvaluateTheField($scope, total_of_dice)
-      PropBets($scope, random_1, random_2)
 
-      if (total_of_dice == 2 || total_of_dice == 3 || total_of_dice == 12) {
-          if ($scope.game_status == "Come Out Roll" ) {
-              LineAway($scope, total_of_dice)
+      $timeout(function() {
+          EvaluateTheField($scope, total_of_dice)
+          PropBets($scope, random_1, random_2)
+
+          if (total_of_dice == 2 || total_of_dice == 3 || total_of_dice == 12) {
+              if ($scope.game_status == "Come Out Roll" ) {
+                  LineAway($scope, total_of_dice)
+              }
+              else if ($scope.game_status == "Point is ") {
+                  ComeAway($scope, total_of_dice)
+              }
           }
-          else if ($scope.game_status == "Point is ") {
-              ComeAway($scope, total_of_dice)
+          if (total_of_dice == 4 || total_of_dice == 5 || total_of_dice == 6 || total_of_dice == 8 || total_of_dice == 9 || total_of_dice == 10 ) {
+              if ($scope.game_status == "Come Out Roll") {
+                  SetsThePoint($scope, total_of_dice)
+                  PayPlaceBets($scope, total_of_dice)
+                  ComesGoToThe($scope, total_of_dice)
+                  $scope.odds_on_come_bets_are_off = false
+                  $scope.place_bets_are_off = false 
+                  $scope.hardways_are_off = false 
+              }
+              else if ($scope.game_status == "Point is " && ($scope.point_is == total_of_dice)) {
+                  FrontLineWinner($scope, total_of_dice)
+                  ComesGoToThe($scope, total_of_dice)
+                  $scope.point_is = ""
+                  $scope.point_is_word = ""
+                  $scope.game_status = "Come Out Roll"
+                  $scope.place_bets_are_off = true 
+                  $scope.odds_on_come_bets_are_off = true 
+                  $scope.hardways_are_off = true 
+              }
+              else if ($scope.game_status == "Point is " && ($scope.point_is != total_of_dice)) {
+                  $scope.the_call_is = total_of_dice
+                  PayPlaceBets($scope, total_of_dice)
+                  ComesGoToThe($scope, total_of_dice)
+              }
           }
-      }
-      if (total_of_dice == 4 || total_of_dice == 5 || total_of_dice == 6 || total_of_dice == 8 || total_of_dice == 9 || total_of_dice == 10 ) {
-          if ($scope.game_status == "Come Out Roll") {
-              SetsThePoint($scope, total_of_dice)
-              PayPlaceBets($scope, total_of_dice)
-              ComesGoToThe($scope, total_of_dice)
-              $scope.odds_on_come_bets_are_off = false
-              $scope.place_bets_are_off = false 
-              $scope.hardways_are_off = false 
+          if (total_of_dice == 7) {
+              if ($scope.game_status == "Come Out Roll" ) {
+                  FrontLineWinner($scope, total_of_dice)
+                  GiveBackTheOdds($scope, total_of_dice)
+              }
+              else if ($scope.game_status == "Point is ") {
+                  SevenOut($scope, total_of_dice)
+              }
           }
-          else if ($scope.game_status == "Point is " && ($scope.point_is == total_of_dice)) {
-              FrontLineWinner($scope, total_of_dice)
-              ComesGoToThe($scope, total_of_dice)
-              $scope.point_is = ""
-              $scope.point_is_word = ""
-              $scope.game_status = "Come Out Roll"
-              $scope.place_bets_are_off = true 
-              $scope.odds_on_come_bets_are_off = true 
-              $scope.hardways_are_off = true 
+          if (total_of_dice == 11) {
+              if ($scope.game_status == "Come Out Roll" ) {
+                  FrontLineWinner($scope, total_of_dice)
+              }
+              else if ($scope.game_status == "Point is ") {
+                  PayTheLastCome($scope, total_of_dice)
+              }
           }
-          else if ($scope.game_status == "Point is " && ($scope.point_is != total_of_dice)) {
-              $scope.the_call_is = total_of_dice
-              PayPlaceBets($scope, total_of_dice)
-              ComesGoToThe($scope, total_of_dice)
-          }
-      }
-      if (total_of_dice == 7) {
-          if ($scope.game_status == "Come Out Roll" ) {
-              FrontLineWinner($scope, total_of_dice)
-              GiveBackTheOdds($scope, total_of_dice)
-          }
-          else if ($scope.game_status == "Point is ") {
-              SevenOut($scope, total_of_dice)
-          }
-      }
-      if (total_of_dice == 11) {
-          if ($scope.game_status == "Come Out Roll" ) {
-              FrontLineWinner($scope, total_of_dice)
-          }
-          else if ($scope.game_status == "Point is ") {
-              PayTheLastCome($scope, total_of_dice)
-          }
-      }
-      $scope.hide_dice = !$scope.hide_dice
-      $scope.no_bet_not_enough_funds = ""
+          $scope.no_bet_not_enough_funds = ""
+      }, 250)
   };
 
   // connecting each place to bet with bank_roll_actual

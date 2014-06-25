@@ -211,7 +211,7 @@ ul
     opacity:1;
     display:inline;
     position:relative;
-    -webkit-animation:fade-in 1s 1;
+    -webkit-animation:fade-in 500ms 1;
     -webkit-animation-delay:0s;
 }
 
