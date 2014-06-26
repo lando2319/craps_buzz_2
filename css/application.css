@@ -17,6 +17,15 @@ body {
       
 }
 
+.body-animated-one{
+    opacity:0;
+}
+.body-animated-two{
+    opacity:1;
+    -webkit-animation:fade-in 1s 1;
+    -webkit-animation-delay:0s;
+}
+
 .btn-darkest {
   color: #ffffff;
   background-color: #777777;
@@ -224,7 +233,7 @@ ul
     opacity:1;
     display:inline;
     position:relative;
-    -webkit-animation:fade-in 500ms 1;
+    -webkit-animation:fade-in 1s 1;
     -webkit-animation-delay:0s;
 }
 

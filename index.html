@@ -18,7 +18,7 @@
   <script src="/javascript/opening_bet_values.js"></script>
   <script src="/javascript/game_status.js"></script>
   </head>
-  <body>
+  <body id="game_body" class="body-animated-one">
     <form action="">
       <fieldset ng-controller="crapsGameplay">
         <div class="container">
@@ -503,9 +503,11 @@
   </body>
 </html>
 <script>
-  $(window).load(function(){
-      $('#welcomeMessage').modal('show');
-  });
+    $(window).load(function(){
+        $('#game_body').removeClass('body-animated-one');
+        $('#game_body').addClass('body-animated-two');
+        $('#welcomeMessage').modal('show');
+    });
 </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
