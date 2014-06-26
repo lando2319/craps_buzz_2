@@ -3,7 +3,7 @@ Craps Buzz
 
 A Craps Game Built in AngularJS
   
-App is LIVE at [Craps Buzz] [1]:
+App is LIVE at [Craps Buzz]:
 
 Version
 ----
