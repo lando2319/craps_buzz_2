@@ -15,7 +15,7 @@ To Run App
 
 The App itself is simply html, Javascript, and CSS
 
-For assistance check out [how to run things locally]
+For assistance on how to run files locally, check out [how to run things locally]
 
 License
 ----
