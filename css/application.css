@@ -177,6 +177,12 @@ fieldset[disabled] .btn-darkest.active {
   color: red;
 }
 
+.welcome_pitch {
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  font-size: 16px;
+}
+
 .app_pitch {
   font-family: 'Roboto Condensed', sans-serif;
   text-align: center;
@@ -279,6 +285,9 @@ ul
   margin-right: 50px;
 }
 
+.center_this_text {
+  text-align: center;
+}
 
 //.btn-default {
 //  min-width: 56px;

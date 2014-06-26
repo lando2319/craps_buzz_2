@@ -291,8 +291,8 @@
                               <br>
                             </div>
                             <div class="btn-group btn-group-justified display_buttons">
-                              <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" ng-click="dont_pass_line_bet_button();"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">{{ dont_pass_line_bet }}</span></a>
-                              <a class="btn btn-default ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" type="button" ng-model="dice" value="Place Bet" ng-click="line_bet_button();"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">{{ line_bet }}</span></a>
+                              <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">0</span></a>
+                              <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">0</span></a>
                             <br>
                             </div>
                             <div class="center_this dealer_calls">
@@ -453,7 +453,51 @@
             </div>
           </div>
         </div>
+        <div class="modal fade" id="welcomeMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                Built in Chicago
+              </div>
+              <div class="modal-body">
+                <span class="app_pitch"><h2>Welcome to Craps Buzz</h2></span>
+                <div class="row welcome_pitch">
+                  Craps is a Dice Game Played all over the world
+                  <br>
+                  You don't need to know Craps, to Play Craps Buzz
+                  <br>
+                  There is a helpful Notice Board Narrating the Game
+                  <br>
+                  <br>
+                  <h4 class="media-heading">To Get Started Pick A Side</h4>
+                  <div class="btn-group btn-group-justified display_buttons">
+                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">0</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">0</span></a>
+                    <br>
+                  </div>
+                  <div class="center_this dealer_calls">
+                    In order to throw the Dice<br>You must Place a Bet on the "Pass Line" or "Don't Pass"
+                  </div>
+                </div>
+                <br>
+                <div class="center_this_text">
+                  <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
+                  <a class="btn btn-default" data-toggle="modal" data-target="#crapsHelp">More Craps Help<br>Quick Start Guide</a></span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </fieldset>
     </form>
   </body>
 </html>
+<script>
+  $(window).load(function(){
+      $('#welcomeMessage').modal('show');
+  });
+</script>
