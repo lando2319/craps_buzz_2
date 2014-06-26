@@ -71,7 +71,7 @@
                               <h5>{{player_game_call.game_helper_modal_win_lose}}</h5>
                             </div>
                             <div class="btn-group btn-group-justified">
-                              <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
+                              <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
                               <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
                             </div>
                           </div>
@@ -271,7 +271,7 @@
                           </div>
                         </div>
                         <div class="btn-group btn-group-justified">
-                          <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
+                          <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
                           <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
                         </div>
                       </div>
@@ -363,7 +363,7 @@
                             <div class="center_this dealer_calls">
                               <h4 class="media-heading">ROLL THE DICE!</h4>
                               The Notice Board will show Win Lose Announcements<br><br>Good Luck<br><br>
-                              <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
+                              <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
                             </div>
                           </div>
                         </div>
@@ -389,7 +389,7 @@
                           <input type="checkbox" ng-model="hardways_are_off" /><label>Hardway Bets Off</label></p>
                         </div>
                         <div class="btn-group btn-group-justified">
-                          <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
+                          <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
                           <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
                         </div>
                       </div>
@@ -467,23 +467,21 @@
                   <br>
                   You don't need to know Craps, to Play Craps Buzz
                   <br>
-                  There is a helpful Notice Board Narrating the Game
+                  Once you place a bet just Click on <a class="btn btn-default game_helper_button">?</a> To Get Details 
                   <br>
                   <br>
-                  <h4 class="media-heading">To Get Started Pick A Side</h4>
+                  <h4 class="media-heading app_pitch">To Get Started Just Pick A Side<br>and Throw The Dice!</h4>
+                  <br>
                   <div class="btn-group btn-group-justified display_buttons">
-                    <a class="btn btn-darkest ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">0</span></a>
-                    <a class="btn btn-default ng-pristine ng-valid" type="button" ng-model="dice"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">0</span></a>
+                    <a class="btn btn-darkest ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" data-dismiss="modal" type="button" ng-model="dice" ng-click="dont_pass_line_bet_button();"><span class="point_num_font_darkside">Don't<br>Pass<br></span><span class="badge">{{ dont_pass_line_bet }}</span></a>
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="game_status != 'Come Out Roll'" data-dismiss="modal" type="button" ng-model="dice" value="Place Bet" ng-click="line_bet_button();"><span class="point_num_font">Pass<br>Line<br></span><span class="badge">{{ line_bet }}</span></a>
                     <br>
-                  </div>
-                  <div class="center_this dealer_calls">
-                    In order to throw the Dice<br>You must Place a Bet on the "Pass Line" or "Don't Pass"
                   </div>
                 </div>
                 <br>
                 <div class="center_this_text">
-                  <a class="btn btn-default" data-toggle="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
-                  <a class="btn btn-default" data-toggle="modal" data-target="#crapsHelp">More Craps Help<br>Quick Start Guide</a></span>
+                  <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built in AngulerJS<br>Need a Developer?</a></span>
+                  <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#crapsHelp">More Craps Help<br>Quick Start Guide</a></span>
                 </div>
               </div>
               <div class="modal-footer">
