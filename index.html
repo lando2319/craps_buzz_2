@@ -114,7 +114,7 @@
                 </div>
                 <div class="row">
                   <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="(line_bet + dont_pass_line_bet) < 1 " ng-model="dice" value="roll the dice" ng-click="roll();">
+                    <a class="btn btn-default ng-pristine ng-valid" ng-disabled="(line_bet + dont_pass_line_bet) < 1 || dice_in_box" ng-model="dice" value="roll the dice" ng-click="roll();">
                       <div class="dealer_calls coin_style">
                         Coins: {{bank_roll_actual}}
                       </div>

@@ -197,6 +197,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', func
   })
 
   $scope.roll = function() {
+      $scope.dice_in_box = true
       $scope.player_game_calls = []
       $scope.hide_dice = !$scope.hide_dice
       var current_roll_dice_2= new Array(1,2,3,4,5,6);
@@ -209,6 +210,9 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', func
       $scope.die_two = random_1;
       var total_of_dice = random_1 + random_2;
 
+      $timeout(function() {
+          $scope.dice_in_box = false
+      }, 500)
 
       $timeout(function() {
           EvaluateTheField($scope, total_of_dice)

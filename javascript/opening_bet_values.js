@@ -1,6 +1,7 @@
 
 function OpeningBetValues($scope)
 {
+  $scope.dice_in_box = false
   $scope.player_game_calls = []
 
   $scope.player_game_call_demo = "You Placed a Pass Line Bet for 5 Coins"
