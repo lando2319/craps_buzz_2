@@ -1,6 +1,7 @@
 
-function OpeningBetValues($scope)
+function OpeningBetValues($scope, $http)
 {
+  Leaderboard($scope, $http)
   $scope.dice_in_box = false
   $scope.player_game_calls = []
 

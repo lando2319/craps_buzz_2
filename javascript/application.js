@@ -14,8 +14,8 @@ crapsGame.service('diceService', function() {
  
 });
 
-crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', function($scope, $timeout, diceService) {
-  OpeningBetValues($scope)
+crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$http', function($scope, $timeout, diceService, $http) {
+  OpeningBetValues($scope, $http)
 
   $scope.increase_decrease_button = function() { $scope.increase_decrease == "+" ? $scope.increase_decrease = "-" : $scope.increase_decrease = "+" }
   $scope.bet_denomination_button = function() {
@@ -272,6 +272,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', func
           if ($scope.player_game_calls.length == 0) {
               $scope.player_game_calls.push({call_actual: "None of your bets were affected, Dice are Ready"})
           }
+          Leaderboard($scope, $http)
       }, 250)
   };
 
