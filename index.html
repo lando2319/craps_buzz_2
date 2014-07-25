@@ -462,17 +462,15 @@
                           <a type="button" class="btn btn-default" data-dismiss="modal">&times;</a>
                         </div>
                         <div class="modal-body">
-                          <ul>
-                            <li ng-repeat="leader in leaders">
-                              <div class="panel panel-default">
-                                <div class="panel-heading"><h3>Leaderboard</h3></div>
-                                <table class="table">
-                                  <tr><th>Rank</th><th>Name</th><th>Coins</th></tr>
-                                  <tr><td>{{leader.id}}</td><td>{{leader.name}}</td><td>{{leader.cashout_amount}}</td></tr>
-                                </table>
-                              </div>
-                            </li>
-                          </ul>
+                          <div class="panel panel-default">
+                            <div class="panel-heading"><h3>Leaderboard</h3></div>
+                            <table class="table">
+                              <tr><th>Rank</th><th>Name</th><th>Coins</th></tr>
+                              <tr ng-repeat="leader in leaders">
+                                <td>{{leader.name}}</td><td>{{leader.cashout_amount}}</td>
+                              </tr>
+                            </table>
+                          </div>
                           <h3>
                             Earn 450 coins to join the leaderboard
                           </h3>

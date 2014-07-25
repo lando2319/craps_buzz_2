@@ -4,14 +4,18 @@ function getLeaderboard($scope, $http)
     success(function(data, status, headers, config) {
       // this callback will be called asynchronously
       // when the response is available
+//      console.log(data)
       angular.forEach(data, function(value) {
-        $scope.leaders.push(value)
+       // console.log(value)
+        $scope.leaders.push({name: value.name, cashout_amount: value.cashout_amount})
       })
 
-      console.log(data)
     }).
     error(function(data, status, headers, config) {
       // called asynchronously if an error occurs
       // or server returns response with an error status.
     });
+}
+function runLeaderboard($scope) {
+  
 }

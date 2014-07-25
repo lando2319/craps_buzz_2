@@ -272,7 +272,6 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
           if ($scope.player_game_calls.length == 0) {
               $scope.player_game_calls.push({call_actual: "None of your bets were affected, Dice are Ready"})
           }
-          Leaderboard($scope, $http)
       }, 250)
   };
 
