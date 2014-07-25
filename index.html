@@ -471,17 +471,15 @@
                               </tr>
                             </table>
                           </div>
-                          <h4>Cashout Coins:</h4> Once you Cashout this webpage will reload
                           <form role="form">
                             <div class="form-group">
-                              <label for="name">Name (20 characters max)</label>
+                              <label for="name">Name to be displayed on the Leaderboard (20 characters max)</label>
                               <input type="text" maxlength=20 ng-disabled="available_leaderboard_position == 0" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
                             </div>
                             <button type="submit" ng-click="enterLeaderboard()" class="btn btn-default">Cashout Coins</button>
+                            <br>
+                            Once you Cashout this webpage will reload. Leaderboard is ranked by Coins then by Date Added. Entertainment Purposes Only.
                           </form>
-                          <div class="disclaimer_for_game">
-                            Leaderboard ranks by Coins then by Date Added. Entertainment Purposes Only.
-                          </div>
                         </div>
                         <div class="btn-group btn-group-justified">
                           <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
