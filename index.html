@@ -462,7 +462,17 @@
                           <a type="button" class="btn btn-default" data-dismiss="modal">&times;</a>
                         </div>
                         <div class="modal-body">
-                          <h3>Leaderboard</h3>
+                          <ul>
+                            <li ng-repeat="leader in leaders">
+                              <div class="panel panel-default">
+                                <div class="panel-heading"><h3>Leaderboard</h3></div>
+                                <table class="table">
+                                  <tr><th>Name</th><th>Coins</th></tr>
+                                  <tr><td>{{leader.name}}</td><td>{{leader.cashout_amount}}</td></tr>
+                                </table>
+                              </div>
+                            </li>
+                          </ul>
                         </div>
                         <div class="btn-group btn-group-justified">
                           <a class="btn btn-default" data-toggle="modal" data-dismiss="modal" data-target="#webDev">Built using AngularJS<br>Need a Developer?</a></span>
