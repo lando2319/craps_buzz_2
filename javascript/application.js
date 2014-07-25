@@ -17,6 +17,20 @@ crapsGame.service('diceService', function() {
 crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$http', function($scope, $timeout, diceService, $http) {
   OpeningBetValues($scope, $http)
 
+  $scope.enterLeaderboard = function(){
+
+    $http({method: 'POST', url: 'http://localhost:3000/api/users/create', data:$scope.formData }).
+//    $http({method: 'POST', url: 'http://192.168.8.103:3000/api/users/create', data:$scope.formData }).
+      success(function(data, status, headers, config) {
+        // empty the form
+        $scope.formData = {};
+      }).
+      error(function(data, status, headers, config) {
+        alert('error on the server')
+      });
+
+  }
+
   $scope.increase_decrease_button = function() { $scope.increase_decrease == "+" ? $scope.increase_decrease = "-" : $scope.increase_decrease = "+" }
   $scope.bet_denomination_button = function() {
     $scope.bet_denomination = diceService.change_denomination($scope.bet_denomination)

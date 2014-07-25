@@ -1,6 +1,7 @@
 
 function OpeningBetValues($scope, $http)
 {
+  $scope.formData = {}
   $scope.leaders = []
   $scope.available_leaderboard_position = 0
   getLeaderboard($scope, $http)
