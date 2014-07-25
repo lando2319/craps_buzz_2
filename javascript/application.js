@@ -24,6 +24,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
       success(function(data, status, headers, config) {
         // empty the form
         $scope.formData = {};
+        window.location.reload()
       }).
       error(function(data, status, headers, config) {
         alert('error on the server')
