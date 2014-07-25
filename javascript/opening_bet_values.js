@@ -2,6 +2,7 @@
 function OpeningBetValues($scope, $http)
 {
   $scope.leaders = []
+  $scope.available_leaderboard_position = 0
   getLeaderboard($scope, $http)
   $scope.dice_in_box = false
   $scope.player_game_calls = []
