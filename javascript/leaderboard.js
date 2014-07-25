@@ -1,9 +1,10 @@
 function runLeaderboard($scope) {
   angular.forEach($scope.leaders, function(value) {
     if (value.cashout_amount < $scope.bank_roll_actual) {
-      $scope.available_leaderboard_position = value.rank
+      if (value.rank < $scope.available_leaderboard_position) {
+        $scope.available_leaderboard_position = value.rank
+      }
     } else {
-      $scope.available_leaderboard_position = 0
     }
   })
 
@@ -13,7 +14,9 @@ function runLeaderboard($scope) {
     $scope.available_leaderboard_position_message = "Cashout now to be ranked " + $scope.available_leaderboard_position + " on the leaderboard. " + distance_to_first
     $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
   } else {
-    $scope.available_leaderboard_position_message = "Earn " + ($scope.leaders[9].cashout_amount - $scope.bank_roll_actual + 1) + " more coins to grab a slot on the leaderboard. " + distance_to_first
+    var last_one = $scope.leaders.pop()
+    console.log(last_one)
+    $scope.available_leaderboard_position_message = "Earn " + (last_one.cashout_amount - $scope.bank_roll_actual + 1) + " more coins to grab a slot on the leaderboard. " + distance_to_first
   }
 }
 
