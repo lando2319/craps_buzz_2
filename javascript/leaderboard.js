@@ -11,7 +11,7 @@ function runLeaderboard($scope) {
 
   if ($scope.available_leaderboard_position > 0 ) {
     $scope.available_leaderboard_position_message = "Cashout now to grab the number " + $scope.available_leaderboard_position + " slot on the leaderboard. " + distance_to_first
-    $scope.player_game_calls.push({call_actual: "Cashout now to rank " + $scope.available_leaderboard_position})
+    $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
   } else {
     $scope.available_leaderboard_position_message = "Earn " + ($scope.leaders[9].cashout_amount - $scope.bank_roll_actual + 1) + " more coins to grab a slot on the leaderboard. " + distance_to_first
   }
