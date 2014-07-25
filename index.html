@@ -59,7 +59,7 @@
                   <div>
                     <ul>
                       <li ng-repeat="player_game_call in player_game_calls" class="losing_bet-{{player_game_call.losing_bet}} winning_bet-{{player_game_call.winning_bet}}">
-                      <span ng-hide="player_game_call.done_here" class="notice_board player_rescue-{{player_game_call.player_rescue}}">{{player_game_call.call_actual}} <a class="btn btn-default game_helper_button" data-toggle="modal" ng-hide="player_game_call.call_actual == 'None of your bets were affected, Dice are Ready'" data-target={{player_game_call.game_helper_modal_id}}>?</a></span>
+                      <span ng-hide="player_game_call.done_here" class="notice_board player_rescue-{{player_game_call.player_rescue}}">{{player_game_call.call_actual}} <a class="btn btn-default game_helper_button" data-toggle="modal" ng-hide="player_game_call.call_actual == 'None of your bets were affected, Dice are Ready' || player_game_call.game_helper_modal_id == nil" data-target={{player_game_call.game_helper_modal_id}}>?</a></span><a class="btn btn-default game_helper_button" data-toggle="modal" ng-hide="player_game_call.game_helper_modal_id != nil" data-target="#leaderboard">?</a>
                       <div class="modal fade" id={{player_game_call.game_helper_modal_id.slice(1)}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -463,7 +463,7 @@
                         </div>
                         <div class="modal-body">
                           <div class="panel panel-default">
-                            <div class="panel-heading"><h3>Leaderboard</h3></div>
+                            <div class="panel-heading"><h3>Leaderboard</h3><h4>{{available_leaderboard_position_message}}</h4></div>
                             <table class="table">
                               <tr><th>Rank</th><th>Name</th><th>Coins</th></tr>
                               <tr ng-repeat="leader in leaders">
@@ -471,9 +471,7 @@
                               </tr>
                             </table>
                           </div>
-                          <h3>
-                            {{available_leaderboard_position_message}}
-                          </h3>
+                          <h4>Cashout Coins:</h4> Once you Cashout the page will be reloaded.
                           <form role="form">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Name</label>
