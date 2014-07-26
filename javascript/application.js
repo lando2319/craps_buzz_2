@@ -19,7 +19,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
 
   $scope.enterLeaderboard = function(){
     $scope.formData.cashout_amount = $scope.bank_roll_actual
-    $http({method: 'POST', url: 'http://localhost:3000/api/users/create', data:$scope.formData }).
+    $http({method: 'POST', url: 'http://lando2319-craps_buzz_leaderboard.nodejitsu.com/api/users/create', data:$scope.formData }).
 //    $http({method: 'POST', url: 'http://192.168.8.103:3000/api/users/create', data:$scope.formData }).
       success(function(data, status, headers, config) {
         // empty the form
