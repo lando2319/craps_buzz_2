@@ -463,7 +463,7 @@
                         </div>
                         <div class="modal-body">
                           <div class="panel panel-default">
-                            <div class="panel-heading"><h3>Leaderboard</h3><h4>{{available_leaderboard_position_message}}</h4></div>
+                            <div class="panel-heading"><h3>Leaderboard</h3><h4>{{available_leaderboard_position_message}}</h4><h5>{{distance_to_first}}</h5></div>
                             <table class="table">
                               <tr><th>Rank</th><th>Name</th><th>Coins</th></tr>
                               <tr ng-repeat="leader in leaders">
@@ -473,8 +473,8 @@
                           </div>
                           <form role="form">
                             <div class="form-group">
-                              <label for="name">Name to be displayed on the Leaderboard (20 characters max)</label>
-                              <input type="text" maxlength=20 ng-disabled="available_leaderboard_position == 11" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
+                              <label for="name">Name to be displayed on the Leaderboard (70 characters max)</label>
+                              <input type="text" maxlength=70 ng-disabled="available_leaderboard_position == 11" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
                             </div>
                             <button type="submit" ng-click="enterLeaderboard()" ng-disabled="available_leaderboard_position == 11" class="btn btn-default">Cashout Coins</button>
                             <br>
