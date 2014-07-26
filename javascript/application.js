@@ -15,7 +15,8 @@ crapsGame.service('diceService', function() {
 });
 
 crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$http', function($scope, $timeout, diceService, $http) {
-  OpeningBetValues($scope, $http)
+  getLeaderboard($scope, $http)
+  OpeningBetValues($scope)
 
   $scope.enterLeaderboard = function(){
     $scope.formData.cashout_amount = $scope.bank_roll_actual
@@ -287,7 +288,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
           if ($scope.player_game_calls.length == 0) {
               $scope.player_game_calls.push({call_actual: "None of your bets were affected, Dice are Ready"})
           }
-          runLeaderboard($scope)
+          messageLeaderboard($scope)
       }, 250)
   };
 
@@ -315,6 +316,9 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
   function AdjustBankRoll($scope, newVal, oldVal) {
       the_difference = newVal - oldVal
       $scope.bank_roll_actual -= the_difference
+      $timeout(function() {
+        runLeaderboard($scope)
+      }, 250)
   }
 }]);
 
