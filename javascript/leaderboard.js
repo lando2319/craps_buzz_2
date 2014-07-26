@@ -3,8 +3,10 @@ function runLeaderboard($scope) {
     if (value.cashout_amount < $scope.bank_roll_actual) {
       if (value.rank < $scope.available_leaderboard_position) {
         $scope.available_leaderboard_position = value.rank
+      } else {
       }
     } else {
+      $scope.available_leaderboard_position = 11
     }
   })
 

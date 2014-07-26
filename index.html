@@ -474,9 +474,9 @@
                           <form role="form">
                             <div class="form-group">
                               <label for="name">Name to be displayed on the Leaderboard (20 characters max)</label>
-                              <input type="text" maxlength=20 ng-disabled="available_leaderboard_position == 0" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
+                              <input type="text" maxlength=20 ng-disabled="available_leaderboard_position == 11" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
                             </div>
-                            <button type="submit" ng-click="enterLeaderboard()" class="btn btn-default">Cashout Coins</button>
+                            <button type="submit" ng-click="enterLeaderboard()" ng-disabled="available_leaderboard_position == 11" class="btn btn-default">Cashout Coins</button>
                             <br>
                             Once you Cashout this webpage will reload. Leaderboard is ranked by Coins then by Date Added. Entertainment Purposes Only.
                           </form>
