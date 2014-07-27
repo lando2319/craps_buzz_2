@@ -290,7 +290,9 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
           }
         runLeaderboard($scope)
         messageLeaderboard($scope)
-        $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
+        if ($scope.available_leaderboard_position != 11) {
+          $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
+        }
       }, 250)
   };
 

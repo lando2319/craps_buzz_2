@@ -1,7 +1,6 @@
 function runLeaderboard($scope) {
   $scope.available_leaderboard_position = 11
   angular.forEach($scope.reverse_leaders, function(value) {
-    console.log(value)
     if (value.cashout_amount < $scope.bank_roll_actual) {
       $scope.available_leaderboard_position = value.rank
     } 
