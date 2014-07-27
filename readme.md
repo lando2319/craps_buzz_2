@@ -4,6 +4,7 @@ Craps Buzz
 A Craps Game Built in AngularJS
   
 App is LIVE at [Craps Buzz]
+
 The Craps Buzz Leaderboard is running on NodeJS, checkout the [github repo]
 Version
 ----
