@@ -1,16 +1,11 @@
 function runLeaderboard($scope) {
-
-  angular.forEach($scope.leaders, function(value) {
+  $scope.available_leaderboard_position = 11
+  angular.forEach($scope.reverse_leaders, function(value) {
+    console.log(value)
     if (value.cashout_amount < $scope.bank_roll_actual) {
-      if (value.rank < $scope.available_leaderboard_position) {
-        $scope.available_leaderboard_position = value.rank
-      } else {
-      }
-    } else {
-      $scope.available_leaderboard_position = 11
-    }
+      $scope.available_leaderboard_position = value.rank
+    } 
   })
-
 }
 
 function getLeaderboard($scope, $http)
@@ -22,7 +17,9 @@ function getLeaderboard($scope, $http)
       // when the response is available
       angular.forEach(data, function(value, key) {
         $scope.leaders.push({rank: key + 1, name: value.name, cashout_amount: value.cashout_amount})
+        $scope.reverse_leaders.push({rank: key + 1, name: value.name, cashout_amount: value.cashout_amount})
       })
+      $scope.dummy_reverse_leaders = $scope.reverse_leaders.reverse()
     }).
     error(function(data, status, headers, config) {
       // called asynchronously if an error occurs
@@ -31,8 +28,20 @@ function getLeaderboard($scope, $http)
 }
 
 function messageLeaderboard($scope) {
-  if ($scope.available_leaderboard_position != 11) {
-    $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
+  if ($scope.available_leaderboard_position == 11) {
+    $scope.distance_to_leaderboard_message = "You Need " + ($scope.leaders[$scope.leaders.length - 1].cashout_amount - $scope.bank_roll_actual + 1) + " Coins to make the leaderboard"
+    $scope.distance_to_first_message = "You Need " + ($scope.leaders[0].cashout_amount - $scope.bank_roll_actual + 1) + " Coins to rank number 1"
+    $scope.cashout_ranking_message = ""
+  } 
+  if ($scope.available_leaderboard_position < 11) {
+    $scope.distance_to_first_message = "You Need " + ($scope.leaders[0].cashout_amount - $scope.bank_roll_actual + 1) + " Coins to rank number 1"
+    $scope.distance_to_leaderboard_message = ""
+    $scope.cashout_ranking_message = "Cashout Now and rank " + ($scope.available_leaderboard_position) + " on the Leaderboard"
+  }
+  if ($scope.available_leaderboard_position == 1) {
+    $scope.distance_to_first_message = ""
+    $scope.distance_to_leaderboard_message = ""
+    $scope.cashout_ranking_message = "Cashout Now and rank " + ($scope.available_leaderboard_position) + " on the Leaderboard"
   }
 }
 

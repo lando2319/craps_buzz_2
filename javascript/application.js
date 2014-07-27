@@ -288,7 +288,9 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
           if ($scope.player_game_calls.length == 0) {
               $scope.player_game_calls.push({call_actual: "None of your bets were affected, Dice are Ready"})
           }
-          messageLeaderboard($scope)
+        runLeaderboard($scope)
+        messageLeaderboard($scope)
+        $scope.player_game_calls.push({call_actual: "Cashout now and rank " + $scope.available_leaderboard_position + " on the Leaderboard"})
       }, 250)
   };
 
@@ -318,6 +320,7 @@ crapsGame.controller('crapsGameplay', ['$scope', '$timeout', 'diceService', '$ht
       $scope.bank_roll_actual -= the_difference
       $timeout(function() {
         runLeaderboard($scope)
+        messageLeaderboard($scope)
       }, 250)
   }
 }]);

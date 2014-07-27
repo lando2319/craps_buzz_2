@@ -3,6 +3,8 @@ function OpeningBetValues($scope)
 {
   $scope.formData = {}
   $scope.leaders = []
+  $scope.reverse_leaders = []
+  $scope.dummy_reverse_leaders = []
   $scope.available_leaderboard_position = 11
   $scope.dice_in_box = false
   $scope.player_game_calls = []

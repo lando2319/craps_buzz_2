@@ -473,7 +473,12 @@
                           </div>
                           <form role="form">
                             <div class="form-group">
-                              <label for="name">Name to be displayed on the Leaderboard (70 characters max)<h4>{{available_leaderboard_position_message}}</h4><h5>{{distance_to_first}}</h5></label>
+                              <h4>{{distance_to_leaderboard_message}}</h4>
+                              <h4>{{distance_to_first_message}}</h4>
+                              <h4>{{cashout_ranking_message}}</h4>
+                              <hr>
+                              <h4>Cashout:</h4>
+                              <label for="name">Name to be displayed on the Leaderboard (70 characters max)</label>
                               <input type="text" maxlength=70 ng-disabled="available_leaderboard_position == 11" class="form-control" ng-model="formData.name"> Cashout with {{bank_roll_actual}} Coins
                             </div>
                             <button type="submit" ng-click="enterLeaderboard()" ng-disabled="available_leaderboard_position == 11" class="btn btn-default">Cashout Coins</button>
