@@ -9,7 +9,7 @@ function runLeaderboard($scope) {
 
 function getLeaderboard($scope, $http)
 {
-  $http({method: 'GET', url: 'http://lando2319-craps_buzz_leaderboard.nodejitsu.com/api/users'}).
+  $http({method: 'GET', url: 'http://lando2319-craps_buzz_leaderboard_2.nodejitsu.com/api/users'}).
   //$http({method: 'GET', url: 'http://lando2319-craps_buzz_leaderboard.nodejitsu.com/api/users'}).
     success(function(data, status, headers, config) {
       // this callback will be called asynchronously
